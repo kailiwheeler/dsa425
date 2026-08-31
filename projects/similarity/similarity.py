@@ -10,7 +10,7 @@ def rescale(a):
 
     for i in range(n_col):
         mean_list.append(np.mean(a[:,i]))
-        sd_list.append(np.mean(a[:,i]))
+        sd_list.append(np.std(a[:,i]))
     for c in range(n_col):
         for r in range(n_row):
             a_scaled[r,c] = (a[r,c]-mean_list[c])/sd_list[c]
@@ -39,21 +39,23 @@ def mag(x):
 
 data = np.genfromtxt('state_facts-1.csv', delimiter = ',' ,  skip_header=1)
 data = data[:,1:]
+print(data[20])
 data = rescale(data)
 
-va = data[46]
+
+va_index = 46
+va = data[va_index]
 n_row = data.shape[0]
-max = -1
+max_similar = -1
 index = 0
 sim_arr = []
 for i in range(n_row):
-    if i != 46:
+    if i != va_index:
         sim = similarity(data[i],va)
         sim_arr.append(sim)
-        if sim > max:
-            max = sim
+        if sim > max_similar:
+            max_similar = sim
             index = i
 
-print(max)
+print(max_similar)
 print(index) #The state most similar to Virginia is North Carolina
-
