@@ -58,4 +58,4 @@ for i in range(n_row):
             index = i
 
 print(max_similar)
-print(index) #The state most similar to Virginia is North Carolina
+print(index) #The state most similar to Virginia is Maryland
